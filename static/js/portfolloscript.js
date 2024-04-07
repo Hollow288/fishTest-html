@@ -43,6 +43,7 @@ Vue.component("photo-card", {
       const lightShade = `rgba(${lightOpacity}, ${lightOpacity}, ${lightOpacity}, 1)`;
       const lightShadeBlack = `rgba(0, 0, 0, 1)`;
       refl.style.backgroundImage = `radial-gradient(circle at ${lightX}% ${lightY}%, ${lightShade} 20%, ${lightShadeBlack})`;
+
     },
     scale: (val, inMin, inMax, outMin, outMax) =>
     outMin + (val - inMin) * (outMax - outMin) / (inMax - inMin) } });
@@ -50,4 +51,4 @@ Vue.component("photo-card", {
 
 
 const app = new Vue({
-  el: "#grid" });
+  el: "#apps" });
