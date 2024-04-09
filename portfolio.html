@@ -275,32 +275,50 @@
             portFolioList:[]
         },
         methods: {
+            queryType(){
+                let that = this
+                $.ajax({
+                    url: 'http://localhost:8999/fish-api/common/portal-type', // 后端接口地址
+                    type: "GET",
+                    headers: {
+                        "Accept": "application/json, text/plain, */*"
+                    },
+                    success: function(response) {
+                        that.menuOptions = response.data
+                        that.loading = false
+                    },
+                    error: function(xhr, status, error) {
+                        that.loading = false
+                    }
+                })
+            },
+            queryList(){
+                let that = this
+                $.ajax({
+                    url: `http://localhost:8999/fish-api/common/portal-portfolio?type=${this.chooseOption}&page=${this.currentPage}&pageSize=${this.pageSize}`,
+                    type: "GET",
+                    headers: {
+                        "Accept": "application/json, text/plain, */*"
+                    },
+                    success: function(response) {
+                        that.portFolioList = response.data
+                        that.loading = false
+                    },
+                    error: function(xhr, status, error) {
+                        that.loading = false
+                    }
+                })
+            },
             menuOnclick(item) {
+                // 回退到第一页
+               this.currentPage = 1;
                this.chooseOption = item.key;
             },
             currentChange(val){
                 this.currentPage = val
                 let that = this;
                 that.loading = true;
-                $.ajax({
-                    url: `http://localhost:8999/fish-api/common/portal-portfolio?type=${this.chooseOption}&page=${this.currentPage}&pageSize=${this.pageSize}`, // 后端接口地址
-                    type: "GET",
-                    headers: {
-                        "Accept": "application/json, text/plain, */*"
-                    },
-                    success: function(response) {
-                        // 请求成功处理逻辑
-                        // $('#result').html(response); // 将返回的数据显示在页面上
-                        // window.localStorage.setItem("portFolioList", response.data);
-                        this.portFolioList = response.data
-                        that.loading = false
-                    },
-                    error: function(xhr, status, error) {
-                        // 请求失败处理逻辑
-                        that.loading = false
-                        console.error(xhr.responseText); // 打印错误信息到控制台
-                    }
-                })
+                this.queryList()
             }
         },
         mounted(){
@@ -310,25 +328,8 @@
             this.pageSize = 8;
             let that = this;
             that.loading = true;
-            $.ajax({
-                url: `http://localhost:8999/fish-api/common/portal-portfolio?type=${this.chooseOption}&page=${this.currentPage}&pageSize=${this.pageSize}`, // 后端接口地址
-                type: "GET",
-                headers: {
-                    "Accept": "application/json, text/plain, */*"
-                },
-                success: function(response) {
-                    // 请求成功处理逻辑
-                    // $('#result').html(response); // 将返回的数据显示在页面上
-                    // window.localStorage.setItem("portFolioList", response.data);
-                    that.portFolioList = response.data
-                    that.loading = false
-                },
-                error: function(xhr, status, error) {
-                    // 请求失败处理逻辑
-                    that.loading = false
-                    console.error(xhr.responseText); // 打印错误信息到控制台
-                }
-            })
+            this.queryList()
+            this.queryType()
         }
     })
 </script>
