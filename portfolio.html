@@ -134,7 +134,7 @@
 <!--&lt;!&ndash;                            </div>&ndash;&gt; {{portFolioList}}-->
                             <div v-for="item in portFolioList" >
 
-                                <a :href="item.completeUrl" data-fancybox="gallery">
+                                <a :href="item.panoramaUrl" data-fancybox="gallery">
                                     <photo-card :img="item.thumbnailUrl" link=""></photo-card>
                                 </a>
                             </div>
@@ -301,7 +301,8 @@
                         "Accept": "application/json, text/plain, */*"
                     },
                     success: function(response) {
-                        that.portFolioList = response.data
+                        that.portFolioList = response.data.data
+                        that.total = response.data.total
                         that.loading = false
                     },
                     error: function(xhr, status, error) {
@@ -313,6 +314,8 @@
                 // 回退到第一页
                this.currentPage = 1;
                this.chooseOption = item.key;
+                this.loading = true;
+               this.queryList()
             },
             currentChange(val){
                 this.currentPage = val
@@ -323,7 +326,7 @@
         },
         mounted(){
             this.currentPage = 1;
-            this.chooseOption = '01'
+            this.chooseOption = 'ztcg-code'
             this.total = 10;
             this.pageSize = 8;
             let that = this;
