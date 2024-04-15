@@ -58,12 +58,12 @@
          </nav>
       </div>
       <!-- End Header -->
-      <main>
+      <main id="app">
          <!-- Start Hero section -->
          <section class="about-hero-section blog-hero-section ps-3 pe-3 ps-md-0 pe-md-0">
             <div class="container">
                <div class="row justify-content-center">
-                  <h1 class="text-white mb-10">Donec ultrices tincidunt</h1>
+                  <h1 class="text-white mb-10" style="font-family: 'Alibaba-PuHuiTi',serif">{{newsInformation.newsTitle}}</h1>
                   <div class="title-border"></div>
                </div>
             </div>
@@ -75,33 +75,37 @@
                <div class="row">
                   <div class="col-md-2 col-12 p-0"></div>
                   <div class="col-md-8 col-12 single-blog-wrap ps-0 pe-0">
-                     <img src="static/picture/apartment-renovation-blog.jpg" alt="apartment-renovation-blog">
+                     <img :src=newsInformation.newsCover alt="apartment-renovation-blog">
                      <div class="d-flex pt-10 pb-10 flex-column flex-md-row">
                         <div class="col-lg-6 col-md-8 col-12 d-flex justify-content-center justify-content-md-start">
                            <div class="pe-3 single-calendar">
                               <i class="fa-solid fa-calendar"></i>
-                              <span>May 8, 2023</span>
+                              <span style="font-family: 'Alibaba-PuHuiTi',serif">{{newsInformation.newsDate}}</span>
                            </div>
-                           <div class="single-calendar">
-                              <i class="fa-solid fa-comment"></i>
-                              <span>No Comments</span>
-                           </div>
+<!--                           <div class="single-calendar">-->
+<!--                              <i class="fa-solid fa-comment"></i>-->
+<!--                              <span>No Comments</span>-->
+<!--                           </div>-->
                         </div>
-                        <div class="col-lg-6 col-md-4 col-12 single-social-icon text-end d-flex justify-content-md-end justify-content-center pt-3 pt-md-0">
-                           <a href="#!">
-                           <i class="fa-brands fa-facebook"></i>
-                           </a>
-                           <a href="#!">
-                           <i class="fa-brands fa-twitter"></i>
-                           </a>
-                           <a href="#!">
-                           <i class="fa-brands fa-youtube"></i>
-                           </a>
-                           <a href="#!">
-                           <i class="fa-brands fa-linkedin"></i>
-                           </a>
-                        </div>
+<!--                        <div class="col-lg-6 col-md-4 col-12 single-social-icon text-end d-flex justify-content-md-end justify-content-center pt-3 pt-md-0">-->
+<!--                           <a href="#!">-->
+<!--                           <i class="fa-brands fa-facebook"></i>-->
+<!--                           </a>-->
+<!--                           <a href="#!">-->
+<!--                           <i class="fa-brands fa-twitter"></i>-->
+<!--                           </a>-->
+<!--                           <a href="#!">-->
+<!--                           <i class="fa-brands fa-youtube"></i>-->
+<!--                           </a>-->
+<!--                           <a href="#!">-->
+<!--                           <i class="fa-brands fa-linkedin"></i>-->
+<!--                           </a>-->
+<!--                        </div>-->
                      </div>
+                     <div class="mb-3" v-html="newsInformation.newsText" style="font-family: 'Alibaba-PuHuiTi',serif">
+<!--                        {{newsInformation.newsText}}-->
+                     </div>
+
                      <p class="mb-3">Egestas tellus rutrum tellus pellentesque. Eu augue ut lectus arcu bibendum at varius vel. Lectus nulla at volutpat diam ut venenatis tellus in metus. </p>
                      <p class="mb-3">Aenean euismod elementum nisi quis eleifend quam adipiscing vitae. Orci porta non pulvinar neque laoreet suspendisse interdum consectetur libero. Malesuada fames ac turpis egestas sed tempus. Pellentesque sit amet porttitor eget.</p>
                      <p class="mb-3">Ut tortor pretium viverra suspendisse potenti nullam. At auctor urna nunc id cursus metus aliquam. Metus aliquam eleifend mi in. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero id. </p>
@@ -210,5 +214,53 @@
       <script src="static/js/slick.min.js"></script>
       <script src="static/js/fancybox.umd.js"></script>
       <script src="static/js/script.js"></script>
+      <script type="text/javascript" src='static/js/vue.js'></script>
+
+      <script>
+         new Vue({
+            el: '#app',
+            data:{
+               loading:false,
+               newsInformation:{}
+            },
+            mounted(){
+               this.currentPage = 1;
+               this.total = 10;
+               this.pageSize = 6;
+               let that = this;
+               that.loading = true;
+               this.queryList()
+            },
+            methods:{
+               queryList(){
+                  let that = this
+                  // 获取当前页面的 URL
+                  const urlParams = new URLSearchParams(window.location.search);
+                  // 获取 URL 中的参数值
+                  const newsId = urlParams.get('newsId');
+                  $.ajax({
+                     url: `http://localhost:8999/fish-api/common/news-information?newsId=${newsId}`,
+                     type: "GET",
+                     headers: {
+                        "Accept": "application/json, text/plain, */*"
+                     },
+                     success: function(response) {
+                        that.newsInformation = response.data[0]
+                        that.loading = false
+                     },
+                     error: function(xhr, status, error) {
+                        that.loading = false
+                     }
+                  })
+               },
+               currentChange(val){
+                  this.currentPage = val
+                  let that = this;
+                  that.loading = true;
+                  this.queryList()
+               }
+            }
+         })
+      </script>
    </body>
 </html>
