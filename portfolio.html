@@ -24,14 +24,12 @@
     <!-- 引入样式 -->
     <link rel="stylesheet" href="static/js/element-ui/lib/theme-chalk/index.css">
    <style>
-      /*.el-menu-item {*/
-      /*   background-color: white;*/
-      /*}*/
-      /*.el-menu-item.is-active {*/
-      /*   background-color: #247bb4 !important;*/
-      /*}*/
       .el-pagination.is-background .el-pager li:not(.disabled).active{
           background-color: #d7926b;
+      }
+
+      [v-cloak] {
+          display: none;
       }
    </style>
 </head>
@@ -75,7 +73,7 @@
 </div>
 <!-- End Header -->
 <main>
-    <div id="app">
+    <div id="app" v-cloak>
         <section class="about-hero-section ps-3 pe-3 ps-md-0 pe-md-0">
             <div class="container">
                 <div class="row justify-content-center">
@@ -84,8 +82,8 @@
                 </div>
             </div>
         </section>
-        <el-container>
-            <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+        <el-container >
+            <el-aside width="200px" style="background-color: rgb(238, 241, 246)" class="wow slideInLeft" >
                 <el-menu  v-for="item in menuOptions" v-bind:key="item.key" :default-active="chooseOption" active-text-color="#d7926b">
 <!--                   <el-menu-item-group >-->
 <!--                      <template slot="title">案例分类</template>-->
@@ -98,42 +96,8 @@
             <el-main>
                 <div class="container" style="margin-top: 80px " >
                     <div class="row" v-loading="loading">
-<!--                        <div class="grid-photo">-->
-<!--                            <a href="static/image/1.jpg" data-fancybox="gallery">-->
-<!--                                <photo-card img="static/image/1.jpg" link=""></photo-card>-->
-<!--                            </a>-->
-<!--                            <a href="static/image/2.jpg" data-fancybox="gallery">-->
-<!--                                <photo-card img="static/image/2.jpg" link=""></photo-card>-->
-<!--                            </a>-->
-<!--                            <a href="static/image/3.jpg" data-fancybox="gallery">-->
-<!--                                <photo-card img="static/image/3.jpg" link=""></photo-card>-->
-<!--                            </a>-->
-<!--                            <a href="static/image/4.jpg" data-fancybox="gallery">-->
-<!--                                <photo-card img="static/image/4.jpg" link=""></photo-card>-->
-<!--                            </a>-->
-<!--                            <a href="static/image/5.jpg" data-fancybox="gallery">-->
-<!--                                <photo-card img="static/image/5.jpg" link=""></photo-card>-->
-<!--                            </a>-->
-<!--                            <a href="static/image/6.jpg" data-fancybox="gallery">-->
-<!--                                <photo-card img="static/image/6.jpg" link=""></photo-card>-->
-<!--                            </a>-->
-<!--                            <a href="static/image/7.jpg" data-fancybox="gallery">-->
-<!--                                <photo-card img="static/image/7.jpg" link=""></photo-card>-->
-<!--                            </a>-->
-<!--                            <a href="static/image/8.jpg" data-fancybox="gallery">-->
-<!--                                <photo-card img="static/image/8.jpg" link=""></photo-card>-->
-<!--                            </a>-->
-<!--                        </div>-->
-                        <div class="grid-photo" >
-
-<!--                            <div v-for="i in [1,2,3]" >-->
-<!--&lt;!&ndash;                                --{{item}}&ndash;&gt;-->
-<!--                                <a href="https://img0.baidu.com/it/u=2397564216,1250084532&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500" data-fancybox="gallery">-->
-<!--                                    <photo-card img="https://img0.baidu.com/it/u=1730710238,1350681003&fm=253&fmt=auto&app=138&f=JPEG?w=480&h=296" link=""></photo-card>-->
-<!--                                </a>-->
-<!--&lt;!&ndash;                            </div>&ndash;&gt; {{portFolioList}}-->
+                        <div class="grid-photo wow slideInRight" >
                             <div v-for="item in portFolioList" >
-
                                 <a :href="item.panoramaUrl" data-fancybox="gallery">
                                     <photo-card :img="item.thumbnailUrl" link=""></photo-card>
                                 </a>
@@ -266,13 +230,14 @@
     new Vue({
         el: '#app',
         data:{
-            menuOptions: [{key: '01', value: '选项一'}, {key: '02', value: '选项二'}],
+            menuOptions: [],
             chooseOption: "",
             total: 0,
             currentPage:1,
             pageSize:8,
             loading:false,
-            portFolioList:[]
+            portFolioList:[],
+            dataLoaded: false,
         },
         methods: {
             queryType(){
@@ -329,8 +294,7 @@
             this.chooseOption = 'ztcg-code'
             this.total = 10;
             this.pageSize = 8;
-            let that = this;
-            that.loading = true;
+            this.loading = true;
             this.queryList()
             this.queryType()
         }

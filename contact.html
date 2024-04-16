@@ -20,6 +20,26 @@
       <link rel="stylesheet" href="static/css/fancybox.css">
       <link rel="stylesheet" href="static/css/style.css">
       <link rel="stylesheet" href="static/css/responsive.css">
+      <!-- 引入样式 -->
+      <link rel="stylesheet" href="static/js/element-ui/lib/theme-chalk/index.css">
+      <style>
+
+         ::-webkit-input-placeholder { /* WebKit browsers */
+            font-family: 'Alibaba-PuHuiTi',serif;
+         }
+
+         :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            font-family: 'Alibaba-PuHuiTi',serif;
+         }
+
+         ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            font-family: 'Alibaba-PuHuiTi',serif;
+         }
+
+         :-ms-input-placeholder { /* Internet Explorer 10+ */
+            font-family: 'Alibaba-PuHuiTi',serif;
+         }
+      </style>
    </head>
    <body>
       <!-- Start Header -->
@@ -101,46 +121,38 @@
                            </div>
                         </div>
                      </div>
-                     <div class="col-lg-5 col-md-6 col-12 contact-form-wrap mt-4 mt-md-0 ms-md-3 ms-0 wow slideInRight">
+                     <div class="col-lg-5 col-md-6 col-12 contact-form-wrap mt-4 mt-md-0 ms-md-3 ms-0 wow slideInRight" id="app">
                         <h4 class="text-black pb-20">Send Your Message</h4>
                         <p class="mb-3">Please feel free to get in touch with us using the contact form below. We’d love to hear for you.</p>
-                        <form action="#" method="post" class="contact-form col-12" id="contact-form">
-                           <div class="form-row">
+                        <form  class="contact-form col-12" >
+                           <div class="form-row" v-loading="loading">
                               <div class="form-row d-flex flex-column flex-lg-row">
                                  <div class="form-group col-lg-6 col-12 pe-0 pe-lg-2">
-                                    <input type="text" class="form-control" name="Full Name" placeholder="Full Name" required="">
+                                    <input type="text" class="form-control" style="font-family: 'Alibaba-PuHuiTi',serif" maxlength="5" placeholder="姓名(必填)" required="" v-model="formData.name">
                                  </div>
                                  <div class="form-group col-lg-6 col-12 pe-0 pe-lg-2">
-                                    <input type="email" class="form-control" name="Email" placeholder="Email Address" required="">
+                                    <input type="email" class="form-control" style="font-family: 'Alibaba-PuHuiTi',serif" maxlength="30"   placeholder="邮箱(可选)"  v-model="formData.email">
                                  </div>
                               </div>
                               <div class="form-row col-lg-12">
                                  <div class="form-group ">
-                                    <input type="tel" class="form-control" name="tel" placeholder="Phone Number" required="">
+                                    <input type="tel" class="form-control" style="font-family: 'Alibaba-PuHuiTi',serif" maxlength="20" placeholder="电话(必填)" required="" v-model="formData.phone">
                                  </div>
                                  <div class="form-group col-md-12">
-                                    <textarea class="form-control" placeholder="Message Here" rows="5"></textarea>
+                                    <textarea class="form-control" style="font-family: 'Alibaba-PuHuiTi',serif" maxlength="100" placeholder="在这里写下留言..." required="" rows="5" v-model="formData.message"></textarea>
                                  </div>
                               </div>
                               <div class="form-group text-start col-12">
-                                 <button class="btn  w-100" type="submit">Submit</button>
+                                 <button class="btn w-100"  @click="submit">Submit</button>
                               </div>
                            </div>
-                           <p id="contact-form-status"></p>
+                           <p style="font-size: 15px ; color: #bb2d3b ;font-family: 'Alibaba-PuHuiTi',serif">{{promptInformation}}</p>
                         </form>
                      </div>
                   </div>
                </div>
             </div>
          </section>
-         <!-- End Contact section -->
-         <!-- Start Map Section -->
-         <section class="map-section-wrap">
-            <div class="map-section">
-               <iframe src="embed.html" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-         </section>
-         <!-- End Map Section -->
       </main>
       <!-- Start Footer Section -->
       <footer class="footer-section">
@@ -209,5 +221,59 @@
       <script src="static/js/slick.min.js"></script>
       <script src="static/js/fancybox.umd.js"></script>
       <script src="static/js/script.js"></script>
+      <script type="text/javascript" src='static/js/vue.js'></script>
+      <script src="static/js/element-ui/lib/index.js"></script>
+      <script>
+         new Vue({
+            el: '#app',
+            data:{
+               formData : {
+                  name : '',
+                  email: '',
+                  phone: '',
+                  message: ''
+               },
+               promptInformation: '',
+               loading:false,
+            },
+            methods:{
+               submit(event){
+                  let that = this
+                  if(that.formData.name === '' || that.formData.message === '' || that.formData.phone === ''){
+                     that.promptInformation = '请按要求填写信息!'
+                     return
+                  }
+                  event.preventDefault();
+                  that.loading = true
+                  $.ajax({
+                     url: `http://localhost:8999/fish-api/common/message-board`,
+                     type: "POST",
+                     data: JSON.stringify(that.formData),
+                     contentType: "application/json",
+                     headers: {
+                        "Accept": "application/json, text/plain, */*"
+                     },
+                     success: function(response) {
+                        if(response.code === 200){
+                           that.promptInformation = response.message
+                           that.formData.name = ''
+                           that.formData.email = ''
+                           that.formData.phone = ''
+                           that.formData.message = ''
+                           that.loading = false
+                        }else{
+                           that.promptInformation = response.message
+                           that.loading = false
+                        }
+                     },
+                     error: function(xhr, status, error) {
+                        that.loading = false
+                        that.promptInformation = '服务器繁忙,请稍后重试！'
+                     }
+                  })
+               }
+            }
+         })
+      </script>
    </body>
 </html>
