@@ -1,12 +1,8 @@
 
-/************************ 
-    @media 1280px
-*************************/
+
 @media (max-width: 1280px) {
 }
-/************************ 
-    @media 1024px
-*************************/
+
 @media (max-width: 1024px) {
     h1{
         font-size: 42px;
@@ -137,9 +133,7 @@
     }
 }
 
-/************************ 
-    @media 540px
-*************************/
+
 @media (max-width: 540px) {
     .pt-100 {
         padding-top: 50px;
@@ -201,9 +195,7 @@
     }
 }
 
-/************************ 
-    @media 480px
-*************************/
+
 @media (max-width: 480px) {
     h1{
         font-size: 36px;
@@ -241,9 +233,7 @@
     }
  
 }
-/************************ 
-    @media 375px
-*************************/
+
 @media (max-width: 375px) {
     .portfolio-box-wrap .popup img,.portfolio-box-wrap .popup span{
         height: 150px;

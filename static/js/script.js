@@ -1,8 +1,15 @@
+$(window).on('scroll', function () {
+    var scrolled = $(window).scrollTop();
+    if (scrolled > 300) $('.go-top').addClass('active');
+    if (scrolled < 300) $('.go-top').removeClass('active');
+});
 
-/* -----------------------------------------------------
-    01. Popup
------------------------------------------------------ */
-// Popup with Slider
+$('.go-top').on('click', function () {
+    $("html, body").animate({
+        scrollTop: "0"
+    }, 1200);
+});
+
 Fancybox.bind('[data-fancybox="gallery"]', {
     Thumbs: false,
     Toolbar: {
@@ -14,9 +21,6 @@ Fancybox.bind('[data-fancybox="gallery"]', {
       }
     }
   });
-/* -----------------------------------------------------
-    02. Progress Bar
------------------------------------------------------ */
 
 $(".animated-progress span").each(function () {
     $(this).animate(
@@ -27,9 +31,7 @@ $(".animated-progress span").each(function () {
     );
     $(this).text($(this).attr("data-progress") + "%");
 });
-/* -----------------------------------------------------
-    03. Counter
------------------------------------------------------ */
+
 
 let count = document.querySelectorAll(".count")
 let arr = Array.from(count)
@@ -51,9 +53,7 @@ let arr = Array.from(count)
     },40)
 
 });
-/* -----------------------------------------------------
-    04. Testimonial Slider 
------------------------------------------------------ */
+
 $(".testimonial-wrapper").slick({
     infinite: true,
     slidesToShow: 1,
@@ -78,8 +78,6 @@ $(".testimonial-wrapper").slick({
         },
     ],
 });
-/* -----------------------------------------------------
-    05. Wow js
------------------------------------------------------ */
+
 new WOW().init();
 

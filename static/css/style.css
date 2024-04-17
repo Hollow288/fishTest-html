@@ -1,7 +1,5 @@
 
-/************************* 
-01. General CSS
-*************************/
+
 * {
     margin: 0;
     padding: 0;
@@ -35,7 +33,7 @@ p {
     font-family: var(--text-font);
     color: var(--secondary-color);
 }
-/*** header ***/
+
 h1,
 h2,
 h3,
@@ -81,14 +79,14 @@ h6 {
     font-weight: 400;
     font-family: var(--text);
 }
-/*** list ***/
+
 ul,
 ol {
     padding: 0px;
     margin: 0px;
     list-style: none;
 }
-/*** link ***/
+
 a {
     color:var(--white-color);
     text-decoration: none;
@@ -106,7 +104,7 @@ a:focus {
     text-decoration: none;
 }
 
-/*** btn ***/
+
 .btn {
     font-size: 18px;
     font-weight: 500;
@@ -124,7 +122,7 @@ a:focus {
     border: 1px solid var(--primary-color);
     border-radius: 0px;
 }
-/*** padding-top-bottom ***/
+
 .ptb-120 {
     padding: 120px 0px;
 }
@@ -200,7 +198,7 @@ a:focus {
 .pb-10 {
     padding-bottom: 10px;
 }
-/*** margin-top-bottom ***/
+
 .mt-10 {
     margin-top: 10px;
 }
@@ -261,9 +259,7 @@ a:focus {
 .mb-100 {
     margin-bottom: 100px;
 }
-/************************* 
-    02. Header
-*************************/
+
  .top-bar{
     background-color: var(--primary-color);
 }
@@ -325,9 +321,7 @@ a:focus {
     background-color: var(--black-color);
     color: var(--white-color);
 } 
-/************************* 
-    03. Hero Section
-*************************/
+
 .hero-section{
     background-image: url(../image/hero-bg.png);
     height:800px;
@@ -362,9 +356,7 @@ a:focus {
     box-shadow: 0px 30px 60px 0px rgba(215, 146, 107, 0.29);
     margin-left: -67px;
 }
-/************************* 
-    04. About US Section
-*************************/
+
 .about-section .about-img .exterior-design{
     border-radius: 100px 0px 100px 0px;
     box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.14);
@@ -401,9 +393,7 @@ a:focus {
 .about-section .about-content p {
     width: 89%;
 }
-/************************* 
-    05. Services Section
-*************************/
+
 .services-section{
     background-image: url(../image/services-bg.jpg);
     background-position: center center;
@@ -464,9 +454,7 @@ a:focus {
     padding-top: 10px;
 }
 
-/************************* 
-    06.  Skill Section 
-*************************/
+
 .skill-section{
     background-image: url(../image/architecture-bg.png);
     background-repeat: no-repeat;
@@ -519,9 +507,7 @@ a:focus {
     z-index: -1;
     border-radius: 118px;
 }
-/************************* 
-   07. counter section
-*************************/
+
 .counter-section{
     background-image: url(../image/cta-bg.png);
     background-color: var(--primary-color);
@@ -534,9 +520,7 @@ a:focus {
     line-height: 70px;
     font-weight: 400;
 }
-/************************* 
-   08. Process Section
-*************************/
+
 .process-section .process-box .process-box-wrap h2 {
     background-color: var(--black-color);
     display: inline-block;
@@ -549,9 +533,7 @@ a:focus {
 .process-section .process-box .process-box-wrap p{
     width: 80%;
 } 
-/************************* 
-   09. Portfolio section
-*************************/
+
 
 .portfolio-box-wrap .popup img{
     width: 100%;
@@ -581,9 +563,7 @@ a:focus {
     font-family: var(--primary-font);
     color: var(--white-color);
 }
-/************************* 
-   10. Our Professional
-*************************/
+
 .professional-box-wrap{
     position: relative;
 }
@@ -611,9 +591,7 @@ a:focus {
 .professional-section .professional-box .professional-item{
     padding-top: 50px;
 }
-/************************* 
-   11. Testimonial section
-*************************/
+
 .testimonials-wrap {
     background-color: #B1977712;
 }
@@ -664,9 +642,7 @@ a:focus {
 .testimonial-wrapper .slick-dots li.slick-active button {
     background-color: var(--black-color);
 }
-/************************* 
-  12. Touch Section 
-*************************/
+
 .touch-section{
     background-image: url(../image/cta-bg.png);
     background-color: var(--primary-color);
@@ -684,9 +660,7 @@ a:focus {
     color: var(--white-color);
     border: 1px solid var(--white-color);
 }
-/************************* 
-  13. Blog section
-*************************/
+
 .blog-section .blog-wrap  .card{
     padding: 20px;
     border-radius: 0px;
@@ -710,9 +684,7 @@ a:focus {
 .blog-section .blog-wrap .blog-btn:hover{
     color: var(--black-color);
 }
-/************************* 
-  14. Contact Us Section
-*************************/
+
 .contact-section {
     background-image: url(../image/contact-us-image.png);
     background-position: center center;
@@ -774,9 +746,7 @@ a:focus {
 .icon-box-wrapper  .icon-box-text p{
     width: 100%;
 }
-/************************* 
-  15. Footer Section
-*************************/
+
 .footer-section{
     background-color: #151515;
 }
@@ -810,9 +780,7 @@ a:focus {
 .footer-section .footer-item .footer-menu .active{
     color: var(--primary-color);
 }
-/************************* 
-  16. About Us Page
-*************************/
+
 .about-hero-section {
     background-image: url(../image/about-us-images.png);
     height: 300px;
@@ -892,16 +860,12 @@ a:focus {
     transition: all .6s ease-in-out;
     cursor: pointer;
 }
-/************************* 
-  17. Portfolio Page
-*************************/
+
 .portfolio-section-wrap .portfolio-box-wrap .popup span,
 .portfolio-section-wrap .portfolio-box-wrap .popup img{
     height: 350px;
 }
-/************************* 
-  18. Services Page
-*************************/
+
 .services-wrap-section{
     background-image: none;
 }
@@ -909,9 +873,7 @@ a:focus {
     background-image: url(../image/services-bg-img.jpg);
     background-position: center center;
 }
-/************************* 
-  19. Blog Page
-*************************/
+
 .services-wrap-section{
     background-image: none;
 }
@@ -919,9 +881,7 @@ a:focus {
     background-image: url(../image/blog-image.png);
     background-position: center center;
 }
-/************************* 
-  20. Single Blog Page
-*************************/
+
 .single-blog-section .single-blog-wrap image{
     width: 100%;
     box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.12);
@@ -949,9 +909,7 @@ a:focus {
 .single-social-icon  a i:hover{
     background-color: var(--black-color);
 }
-/************************* 
-  21. Contact Page
-*************************/
+
 .contact-hero-section{
     background-image: url(../image/contact-bg-img.png);
 }
@@ -976,9 +934,7 @@ a:focus {
 .map-section-wrap .map-section{
     height: 450px;
 }
-/************************* 
-  22. 404 Page
-*************************/
+
 .error-section {
     background-image: url(../image/error-images.png);
     background-position: center center;
@@ -1011,9 +967,7 @@ a:focus {
     border: 1px solid var(--white-color);
     color: var(--white-color);
 }
-/************************* 
-  23. Coming Soon Page
-*************************/
+
 .coming-hero-section{
     background-image: url(../image/coming-soon.png);
     background-repeat: no-repeat;
@@ -1054,4 +1008,185 @@ a:focus {
     border-radius: 0px;
     width: 200px;
     border: 1px solid var(--white-color);
+}
+
+footer .content {
+    margin-bottom: 30px;
+}
+footer .content.no-mb {
+    margin-bottom: 0;
+}
+
+
+.about .image img {
+    width: 100%;
+}
+
+.about .text h4 {
+    margin-bottom: 20px;
+}
+
+.about .text .line {
+    background-color: #999;
+    width: 50px;
+    height: 1px;
+    margin-bottom: 15px;
+}
+
+.about .text p span {
+    color: #333;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.about .text .wrap-media {
+    margin-top: 25px;
+}
+
+.about .text .wrap-media ul {
+    padding: 0;
+    margin: 0;
+}
+
+.about .text .wrap-media ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.about .text .wrap-media ul li a i {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    border: 2px solid #ddd;
+    text-align: center;
+    color: #555;
+}
+
+.about .text .wrap-media ul li:hover a i {
+    background-color: #f8f8f8;
+    transition: all .4s ease;
+    border: 2px solid #a3553e;
+}
+
+
+/*about team*/
+
+.about-team .content {
+    text-align: center;
+}
+
+.about-team .content img {
+    width: 100%;
+}
+
+.about-team .content h4 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+
+footer .contact-us ul li {
+    color: #999;
+}
+
+footer .contact-us span {
+    color: #fafafa;
+}
+
+
+footer .content ul li a {
+    color: #999;
+}
+
+footer .content ul li a:hover {
+    color: #fafafa;
+}
+
+
+footer .content ul {
+    padding: 0;
+    margin: 0;
+}
+
+footer .content ul li {
+    list-style-type: none;
+    color: #fafafa;
+    margin-bottom: 10px;
+}
+
+footer .content ul li:last-child {
+    margin-bottom: 0;
+}
+
+
+footer .content {
+    margin-bottom: 30px;
+}
+footer .content.no-mb {
+    margin-bottom: 0;
+}
+
+
+footer {
+    padding: 75px 0 30px;
+    background-color: #262626;
+    color: #999;
+}
+
+footer .content h4,
+footer .content h2 {
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+footer .content ul {
+    padding: 0;
+    margin: 0;
+}
+
+footer .content ul li {
+    list-style-type: none;
+    color: #fafafa;
+    margin-bottom: 10px;
+}
+
+footer .content ul li:last-child {
+    margin-bottom: 0;
+}
+
+footer .content ul li a {
+    color: #999;
+}
+
+footer .content ul li a:hover {
+    color: #fafafa;
+}
+
+footer .contact-us ul li {
+    color: #999;
+}
+
+footer .contact-us span {
+    color: #fafafa;
+}
+
+footer .wrap-copyright {
+    text-align: center;
+    color: #888;
+    margin-top: 50px;
+    border-top: 1px solid #444;
+    padding-top: 30px;
+}
+
+
+.left-menu {
+    float: left;
+    width: 50%; /* 左侧菜单占一半宽度 */
+}
+
+.right-menu {
+    float: right;
+    width: 50%; /* 右侧菜单占一半宽度 */
 }
