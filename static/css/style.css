@@ -1,5 +1,3 @@
-
-
 * {
     margin: 0;
     padding: 0;
@@ -7,9 +5,9 @@
     outline: none;
 }
 :root {
-    --primary-font: "Vidaloka";
-    --secondary-font: "Commissioner";
-    --text-font: "DM Sans";
+    --primary-font: "Alibaba-PuHuiTi";
+    --secondary-font: "Alibaba-PuHuiTi";
+    --text-font: "Alibaba-PuHuiTi";
     --primary-color: #D7926B;
     --secondary-color: #646464;
     --black-color: #000000;
@@ -1130,7 +1128,7 @@ footer .content.no-mb {
 
 
 footer {
-    padding: 75px 0 30px;
+    padding: 75px 0 20px;
     background-color: #262626;
     color: #999;
 }
@@ -1177,7 +1175,7 @@ footer .wrap-copyright {
     color: #888;
     margin-top: 50px;
     border-top: 1px solid #444;
-    padding-top: 30px;
+    padding-top: 20px;
 }
 
 
@@ -1189,4 +1187,137 @@ footer .wrap-copyright {
 .right-menu {
     float: right;
     width: 50%; /* 右侧菜单占一半宽度 */
+}
+
+
+
+
+
+
+.footErweimaBox .wximg {
+    width: 28px;
+    height: 28px;
+}
+
+.footErweimaBox {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: auto;
+
+    /*position: absolute;*/
+    /*right: 50px;*/
+    /*bottom: 133px;*/
+
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    transition: transform 0.3s ease;
+
+    flex-direction: column;
+}
+
+.footErweimaBox .imgsItem {
+    position: relative;
+    padding: 0 15px;
+
+    display: flex;
+    flex-direction: column; /* 将元素垂直排列 */
+    margin-bottom: 20px; /* 可以根据需要调整元素之间的间距 */
+}
+
+.footErweimaBox .alertimg {
+    background: #fff;
+    width: auto;
+    height: 130px;
+    padding: 15px;
+    position: absolute;
+    white-space: nowrap;
+    bottom: 48px;
+    left: 0;
+    right: 0;
+    /*right: 0px;*/
+    /*left: -150px;*/
+    margin: auto;
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    -webkit-transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+    display: table;  /*关键代码-确保弹窗盒子能自动撑开*/
+    align-items: center;
+}
+
+
+
+.footErweimaBox .alertimg .img {
+    display: inline-block; /*关键代码-确保弹窗盒子能自动撑开*/
+    margin: 0 5px;
+}
+
+.footErweimaBox .alertimg .img,
+.footErweimaBox .alertimg img {
+    width: 80px;
+    height: 80px;
+}
+
+
+.footErweimaBox .alertimg:before {
+    content: "";
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: auto;
+    bottom: -8px;
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-top: 12px solid #fff;
+}
+
+.footErweimaBox .alertimg p {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 6px;
+    font-family: 'Alibaba-PuHuiTi',serif;
+    font-weight: 400;
+    color: #333333;
+}
+
+.alertimg_hover {
+    opacity: 1 !important;
+    visibility: visible !important;
+    -webkit-transform: rotateY(0deg) !important;
+    transform: rotateY(0deg) !important;
+}
+
+
+.footErweimaBox .imgsItem .wximg {
+    width: 39px;
+    height: 39px;
+    opacity: 0.6;
+    transition: 0.5s;
+}
+
+
+.footErweimaBox .imgsItem .wximg:hover {
+    opacity: 1;
+}
+
+
+.neiye_width .footErweimaBox {
+    display: flex;
+    justify-content: end;
+
+}
+
+.goToTopBtn {
+    background-color: rgba(103, 103, 103, 0.7); /* 灰色背景 */
+    color: #fff;
+    padding: 8px;
+    border-radius: 50%; /* 圆形 */
+    cursor: pointer;
 }

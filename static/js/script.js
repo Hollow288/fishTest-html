@@ -79,5 +79,31 @@ $(".testimonial-wrapper").slick({
     ],
 });
 
+
+
+const goToTopBtn = document.getElementById('goToTopBtn');
+
+goToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+
+$(function() {
+    $('.imgsItem').mouseenter(function() {
+        console.log($(this).children('.alertimg').width()) //每项的宽度
+        $(this).children('.alertimg').css('left', -$(this).children('.alertimg').width() / 2 +
+            20) //根据每项的宽度，自定义left的距离
+        $(this).children('.alertimg').addClass('alertimg_hover')
+    }).mouseleave(function() {
+        $(this).children('.alertimg').removeClass('alertimg_hover')
+        $(this).siblings().children('.alertimg').removeClass('alertimg_hover')
+    })
+})
+
+
+
 new WOW().init();
 
