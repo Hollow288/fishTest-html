@@ -22,6 +22,7 @@ body {
     padding: 0px;
     margin: 0px;
     border: 0;
+    overflow-x: hidden; /* 隐藏水平滚动条 */
 }
 p {
     margin: 0px;
@@ -1213,6 +1214,7 @@ footer .wrap-copyright {
     right: 30px;
     bottom: 30px;
     transition: transform 0.3s ease;
+    z-index: 998;
 
     flex-direction: column;
 }
@@ -1224,6 +1226,7 @@ footer .wrap-copyright {
     display: flex;
     flex-direction: column; /* 将元素垂直排列 */
     margin-bottom: 20px; /* 可以根据需要调整元素之间的间距 */
+    z-index: 999;
 }
 
 .footErweimaBox .alertimg {
