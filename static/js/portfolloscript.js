@@ -3,9 +3,11 @@ Vue.component("photo-card", {
                 :href="link"
                 target="_blank"
                 ref="card"
-                @mousemove="move"
-                @mouseleave="leave"
-                @mouseover="over">
+
+                   >
+                   <!--                @mousemove="move"-->
+<!--                @mouseleave="leave"-->
+<!--                @mouseover="over">-->
                   <div class="reflection" ref="refl"></div>
                   <img :src="img"/>
             </a>`,
